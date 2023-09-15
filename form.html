@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body onload="onLoad()">
+    <div class="container">
+        <h1>Pokedex</h1>
+        <input type="hidden" id="msg" name="msg" value="">
+        <UM-POKEMON>
+        <br>
+        <LISTAR-POKEMON>
+
+        <form>
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome">
+            </div>
+            <div class="form-group">
+                <label for="tipo">Tipo</label>
+                <input type="text" class="form-control" id="tipo" name="tipo">
+            </div>
+            <button type="button" class="btn btn-danger" onclick="confirmarDeletePokemon(id, nome, tipo)">Confirmar Exclusão</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function confirmarDeletePokemon(id, nome, tipo) {  
+            if (confirm('Confirmar a exclusão do Pokémon [' + nome + '] (ID ' + id + ') do tipo ' + tipo)) {  
+                location.href = '/pokemon/delete/' + id;
+            }
+        }
+
+        function onLoad() {
+            if (document.getElementById("msg").value != "") {
+                alert(document.getElementById("msg").value);
+            }
+        }
+    </script>
+</body>
+</html>

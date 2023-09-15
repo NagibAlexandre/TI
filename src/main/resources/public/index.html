@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pokédex</h1>
+
+        <form id="inserirForm">
+            <div class="form-group">
+                <label for="pokemonNome">Nome do Pokémon</label>
+                <input type="text" class="form-control" id="pokemonNome" name="pokemonNome">
+            </div>
+            <div class="form-group">
+                <label for="pokemonTipo">Tipo do Pokémon</label>
+                <input type="text" class="form-control" id="pokemonTipo" name="pokemonTipo">
+            </div>
+            <button type="button" class="btn btn-success" onclick="inserirPokemon()">Inserir Pokémon</button>
+        </form>
+
+        <div class="mt-4">
+            <h2>Lista de Pokémon</h2>
+            <ul id="listaPokemon"></ul>
+        </div>
+        
+        <form id="removerForm">
+            <div class="form-group">
+                <label for="pokemonID">ID do Pokémon a Remover</label>
+                <input type="number" class="form-control" id="pokemonID" name="pokemonID">
+            </div>
+            <button type="button" class="btn btn-danger" onclick="removerPokemon()">Remover Pokémon</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function inserirPokemon() {
+            const nome = document.getElementById("pokemonNome").value;
+            const tipo = document.getElementById("pokemonTipo").value;
+
+            if (nome && tipo) {
+                const listaPokemon = document.getElementById("listaPokemon");
+                const novoPokemon = document.createElement("li");
+                novoPokemon.textContent = `Nome: ${nome}, Tipo: ${tipo}`;
+                listaPokemon.appendChild(novoPokemon);
+
+                document.getElementById("pokemonNome").value = "";
+                document.getElementById("pokemonTipo").value = "";
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        }
+
+        function removerPokemon() {
+            const id = document.getElementById("pokemonID").value;
+            const listaPokemon = document.getElementById("listaPokemon");
+            const itemARemover = document.querySelector(`#listaPokemon li:nth-child(${id})`);
+
+            if (itemARemover) {
+                listaPokemon.removeChild(itemARemover);
+                document.getElementById("pokemonID").value = "";
+            } else {
+                alert("ID de Pokémon não encontrado na lista.");
+            }
+        }
+    </script>
+</body>
+</html>
